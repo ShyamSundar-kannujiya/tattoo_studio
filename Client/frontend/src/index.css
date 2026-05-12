@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================
+   GLOBAL THEME SETTINGS
+========================================= */
+
+:root {
+  --color-dark-100: #0a0a0a;
+  --color-dark-200: #111111;
+  --color-dark-300: #1a1a1a;
+  --color-dark-400: #222222;
+
+  --color-primary: #dc2626;
+  --color-primary-dark: #991b1b;
+
+  --color-text: #ffffff;
+  --color-text-muted: #9ca3af;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --shadow-primary: 0 10px 30px rgba(220, 38, 38, 0.18);
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GLOBAL BODY */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-dark-100);
+  color: var(--color-text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* HEADINGS */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Cinzel", serif;
+  font-weight: 700;
+  color: white;
+}
+
+/* LINKS */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+/* IMAGES */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* BUTTONS */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* ROOT APP */
+#root {
+  min-height: 100vh;
+  background: black;
+}
+
+/* CUSTOM UTILITIES */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-dark {
+  background-color: var(--color-dark-100);
+}
+
+.bg-surface {
+  background-color: var(--color-dark-200);
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ef4444;
+}
+
+/* TEXT SELECTION */
+::selection {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* FORM ELEMENTS */
+input,
+textarea,
+select {
+  font-family: inherit;
+  color: white;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* GLASS CARD */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+}
+
+/* BUTTON STYLES */
+.btn-primary {
+  @apply bg-red-600 hover:bg-red-700 text-white font-semibold uppercase tracking-wider rounded-full transition-all duration-300;
+  box-shadow: var(--shadow-primary);
+}
+
+.btn-outline {
+  @apply border border-white/20 hover:border-red-500 hover:text-red-500 text-white font-semibold uppercase tracking-wider rounded-full transition-all duration-300;
+}
+
+/* SECTION SPACING */
+.section-padding {
+  @apply py-20 px-6 md:px-12;
+}
+
+/* CONTAINER */
+.container-custom {
+  @apply max-w-7xl mx-auto;
+}
+
+/* LOADER */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.08);
+  border-top: 4px solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* FADE ANIMATION */
+.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+
+  h2 {
+    font-size: clamp(2rem, 6vw, 4rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
