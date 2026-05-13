@@ -3,7 +3,9 @@ import cloudinary from "../config/cloudinary.js";
 
 /* CREATE */
 export const createPortfolio = async (req, res) => {
+
   try {
+
     const { title, category } = req.body;
 
     if (!req.file) {
@@ -11,12 +13,19 @@ export const createPortfolio = async (req, res) => {
     }
 
     // Get Cloudinary URL from multer-storage-cloudinary
-    const imageUrl = req.file.url;
-    const publicId = req.file.filename;
+    const imageUrl = req.file.url || req.file.path;
+    const publicId = req.file.filename || req.file.public_id;
+
+     console.log("Final imageUrl:", imageUrl);
+     console.log("Final publicId:", publicId);
+
+    if (!imageUrl) {
+      return res.status(400).json({ message: "Image URL not found from uploader" });
+    }
 
     const portfolio = await Portfolio.create({
-      title,
-      category,
+      title: req.body.title || "Untitled",
+      category: req.body.category || "Uncategorized",
       image: imageUrl,
       public_id: publicId,
     });
