@@ -33,7 +33,7 @@ const Booking = () => {
   return (
     <section className="bg-black text-white min-h-screen">
       {/* Hero Section */}
-      <div
+      {/* <div
         className="relative h-[70vh] flex items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage: "url('/booking-banner.jpg')",
@@ -51,7 +51,7 @@ const Booking = () => {
             tattoo professionals.
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Why Book With Us */}
       <div className="py-20 px-4 md:px-10 max-w-7xl mx-auto">
