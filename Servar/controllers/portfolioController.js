@@ -6,33 +6,35 @@ export const createPortfolio = async (req, res) => {
   try {
     const { title, category } = req.body;
 
-    const result = await cloudinary.uploader.upload(req.file.path);
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    // Get Cloudinary URL from multer-storage-cloudinary
+    const imageUrl = req.file.url;
+    const publicId = req.file.filename;
 
     const portfolio = await Portfolio.create({
       title,
       category,
-      image: result.secure_url,
-      public_id: result.public_id,
+      image: imageUrl,
+      public_id: publicId,
     });
 
     res.status(201).json(portfolio);
   } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
+    console.error("Create portfolio error:", error);
+    res.status(500).json({ message: error.message });
   }
 };
 
 /* GET ALL */
 export const getPortfolio = async (req, res) => {
   try {
-    const portfolio = await Portfolio.find();
-
+    const portfolio = await Portfolio.find().sort({ createdAt: -1 });
     res.status(200).json(portfolio);
   } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -42,23 +44,17 @@ export const deletePortfolio = async (req, res) => {
     const portfolio = await Portfolio.findById(req.params.id);
 
     if (!portfolio) {
-      return res.status(404).json({
-        message: "Portfolio not found",
-      });
+      return res.status(404).json({ message: "Portfolio not found" });
     }
 
-    // Delete image from Cloudinary
-    await cloudinary.uploader.destroy(portfolio.public_id);
+    if (portfolio.public_id) {
+      await cloudinary.uploader.destroy(portfolio.public_id);
+    }
 
-    // Delete from DB
     await Portfolio.findByIdAndDelete(req.params.id);
 
-    res.status(200).json({
-      message: "Portfolio deleted",
-    });
+    res.status(200).json({ message: "Portfolio deleted successfully" });
   } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
+    res.status(500).json({ message: error.message });
   }
 };
