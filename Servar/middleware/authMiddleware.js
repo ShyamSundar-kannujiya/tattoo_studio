@@ -20,6 +20,10 @@ export const protect = async (req, res, next) => {
 
     req.user = await User.findById(decoded.id).select("-password");
 
+    console.log("TOKEN:", token);
+    console.log("DECODED:", decoded);
+    console.log("USER:", req.user);
+    
     next();
   } catch (error) {
     res.status(401).json({
@@ -30,12 +34,14 @@ export const protect = async (req, res, next) => {
 
 /* Admin Only */
 export const adminOnly = (req, res, next) => {
-  if (req.user && req.user.role === "admin") {
-    next();
-  } else {
-    return res.status(403).json({
-      message: "Admin access only",
-    });
+  if (!req.user) {
+    return res.status(401).json({ message: "User not found" });
   }
+
+  if (req.user.role?.toLowerCase() !== "admin") {
+    return res.status(403).json({ message: "Admin access only" });
+  }
+
+  next();
 };
 export default protect;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axios";
 import AdminSidebar from "../components/AdminSidebar";
 import { ImagePlus, Trash2 } from "lucide-react";
 
@@ -17,8 +17,7 @@ const PortfolioManager = () => {
   ========================= */
   const fetchPortfolio = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/portfolio`);
-
+      const res = await api.get("/portfolio");
       setPortfolio(res.data);
     } catch (error) {
       console.log(error);
@@ -57,16 +56,19 @@ const PortfolioManager = () => {
 
       data.append("title", formData.title);
       data.append("category", formData.category);
-      data.append("image", formData.image);
 
-      await axios.post(`${import.meta.env.VITE_API_URL}/portfolio/upload`, data, {
-        withCredentials: true,
+      if (formData.image) {
+        data.append("image", formData.image);
+      }
 
+      const response = await api.post("/portfolio/upload", data, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
+
+      console.log(response.data);
+
       alert("Portfolio uploaded successfully");
 
       setFormData({
@@ -77,7 +79,7 @@ const PortfolioManager = () => {
 
       fetchPortfolio();
     } catch (error) {
-      console.log(error);
+      console.log("UPLOAD ERROR:", error.response || error);
     }
   };
 
@@ -86,13 +88,7 @@ const PortfolioManager = () => {
   ========================= */
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/portfolio/${id}`, {
-        withCredentials: true,
-
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      await api.delete(`/portfolio/${id}`);
 
       fetchPortfolio();
     } catch (error) {
@@ -189,9 +185,17 @@ const PortfolioManager = () => {
             >
               {/* Image */}
               <img
-                src={item.image}
+                src={
+                  item.image.startsWith("http")
+                    ? item.image
+                    : `${import.meta.env.VITE_API_URL}${item.image}`
+                }
                 alt={item.title}
                 className="w-full h-80 object-contain bg-black"
+                onError={(e) => {
+                  e.target.src =
+                    "https://via.placeholder.com/400x300?text=No+Image";
+                }}
               />
 
               {/* Content */}
