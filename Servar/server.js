@@ -6,6 +6,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 
+import chatRoute from "./routes/chatRoute.js";
 import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
@@ -15,10 +16,11 @@ import portfolioRoutes from "./routes/portfolioRoutes.js";
 import testimonialRoutes from "./routes/testimonialRoutes.js";
 
 const app = express();
+
 /* Middleware */
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN ,
+    origin: process.env.CORS_ORIGIN,
     credentials: true,
   }),
 );
@@ -35,6 +37,7 @@ app.use("/appointments", appointmentRoutes);
 app.use("/settings", settingsRoutes);
 app.use("/portfolio", portfolioRoutes);
 app.use("/testimonials", testimonialRoutes);
+app.use("/chat", chatRoute);
 
 /* Default Route */
 app.get("/", (req, res) => {
@@ -50,15 +53,16 @@ app.use((err, req, res, next) => {
   });
 });
 
-/* Start Server after DB */
+/* Start Server */
 const PORT = process.env.PORT || 5000;
 
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`✅ Server running on http://localhost:${PORT}`);
+      console.log(`📝 Chat endpoint: http://localhost:${PORT}/chat`);
     });
   })
   .catch((err) => {
-    console.log("DB Connection Failed ❌", err);
+    console.log("❌ DB Connection Failed:", err);
   });

@@ -8,6 +8,16 @@ import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Clock, CalendarCheck } from "lucide-react";
 
 const Footer = () => {
+   const socialLinks = [
+     { Icon: FaFacebookF, url: "https://www.facebook.com/share/1FF3fYs4B6/" },
+     {
+       Icon: FaInstagram,
+       url: "https://www.instagram.com/up50tattoo?igsh=MWhzMDUxY3AzbWxraQ==",
+     },
+     { Icon: FaTwitter, url: "#" },
+     { Icon: FaPinterestP, url: "https://pin.it/76XpBSA0e" },
+   ];
+
   return (
     <footer
       id="ContactSection"
@@ -33,17 +43,17 @@ const Footer = () => {
 
             {/* Social Links */}
             <div className="flex gap-4">
-              {[FaFacebookF, FaInstagram, FaTwitter, FaPinterestP].map(
-                (Icon, index) => (
-                  <a
-                    key={index}
-                    href="#"
-                    className="w-11 h-11 rounded-full border border-gray-800 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition-all duration-300"
-                  >
-                    <Icon size={16} />
-                  </a>
-                ),
-              )}
+            {socialLinks.map((item, index) => (
+               <a
+             key={index}
+              href={item.url}
+             target="_blank"
+             rel="noopener noreferrer"
+             className="w-11 h-11 rounded-full border border-gray-800 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition-all duration-300"
+             >
+              <item.Icon size={16} />
+              </a>
+            ))}
             </div>
           </div>
 
@@ -107,17 +117,17 @@ const Footer = () => {
             <ul className="space-y-5 text-gray-400 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="text-red-500 mt-1" size={18} />
-                <span>Lucknow, Uttar Pradesh, India</span>
+                <span>Azamgharh, Uttar Pradesh, India</span>
               </li>
 
               <li className="flex items-center gap-3">
                 <Phone className="text-red-500" size={18} />
-                <span>+91 98765 43210</span>
+                <span>+91 88748 81670</span>
               </li>
 
               <li className="flex items-center gap-3">
                 <Mail className="text-red-500" size={18} />
-                <span>info@ratattoo.com</span>
+                <span>kannaujiyasahil13@gmail.com</span>
               </li>
 
               <li className="flex items-center gap-3">
@@ -166,7 +176,13 @@ const Footer = () => {
 
         {/* Bottom Copyright */}
         <div className="mt-16 pt-8 border-t border-white/5 text-center text-gray-500 text-xs tracking-[0.3em] uppercase">
-          © 2026 UP50 Tattoo Studio. All Rights Reserved. Designed by Shyam
+          © 2026 UP50 Tattoo Studio. All Rights Reserved.{" "}
+          <a
+            href="https://shyam-sundar.com/"
+            className="hover:text-red-500 transition"
+          >
+            Designed by Shyam
+          </a>
         </div>
       </div>
     </footer>

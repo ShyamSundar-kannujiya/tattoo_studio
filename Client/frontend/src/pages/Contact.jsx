@@ -53,7 +53,7 @@ const Contact = () => {
               <FaMapMarkerAlt className="text-red-500 text-2xl mt-1" />
               <div>
                 <h4 className="font-semibold text-xl">Studio Address</h4>
-                <p className="text-gray-400">Lucknow, Uttar Pradesh, India</p>
+                <p className="text-gray-400">Azamgarh, Uttar Pradesh, India</p>
               </div>
             </div>
 
@@ -69,7 +69,7 @@ const Contact = () => {
               <FaEnvelope className="text-red-500 text-2xl mt-1" />
               <div>
                 <h4 className="font-semibold text-xl">Email Address</h4>
-                <p className="text-gray-400">info@ratattoo.com</p>
+                <p className="text-gray-400">kannaujiyasahil13@gmail.com</p>
               </div>
             </div>
 

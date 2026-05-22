@@ -16,6 +16,7 @@ import Blog from "./pages/Blog.jsx";
 import BlogDetails from "./pages/BlogDetails";
 import PortfolioManager from "./admin/PortfolioManager";
 
+import ChatWidget from "./components/ChatWidget";
 
 // Admin Routes
 import AdminRoutes from "./routes/AdminRoutes.jsx";
@@ -31,6 +32,7 @@ function App() {
       {/* Show Navbar only on public pages */}
       {!isAdminRoute && <Navbar />}
       <ScrollToTop />
+      <ChatWidget />
 
       {/* Main Routes */}
       <Routes>
