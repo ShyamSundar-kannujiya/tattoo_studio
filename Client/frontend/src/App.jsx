@@ -1,4 +1,5 @@
 import "./App.css";
+import InstallPWA from "../InstallPWA";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import ScrollToTop from "./components/ScrollToTop";
@@ -33,6 +34,7 @@ function App() {
       {!isAdminRoute && <Navbar />}
       <ScrollToTop />
       <ChatWidget />
+      <InstallPWA />
 
       {/* Main Routes */}
       <Routes>
