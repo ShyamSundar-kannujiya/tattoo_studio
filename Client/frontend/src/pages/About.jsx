@@ -1,4 +1,4 @@
-import StatCounter from "../Function/counter"; 
+import StatCounter from "../Function/counter";
 
 const About = () => {
   return (
@@ -36,9 +36,9 @@ const About = () => {
         <div className="relative">
           <div className="relative z-10 rounded-lg overflow-hidden border-8 border-zinc-900">
             <img
-              src="./tattoo.png"
+              src="./About.png"
               alt="Tattoo Studio"
-              className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="w-full h-auto object-cover"
             />
           </div>
           {/* Decorative Orange Box */}
