@@ -9,6 +9,9 @@ const categories = [
   "Traditional",
   "Lettering",
   "Color",
+  "Coverup",
+  "Realistic",
+  "Piercing",
 ];
 
 const Portfolio = () => {

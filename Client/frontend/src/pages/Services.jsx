@@ -19,7 +19,7 @@ const Services = () => {
               {/* Image Card 1 */}
               <div className="relative group h-[400px] overflow-hidden bg-zinc-900 border border-white/5">
                 <img
-                  src="./AboutUs.png"
+                  src="./R.png"
                   alt="Work 1"
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
                 />
@@ -36,7 +36,7 @@ const Services = () => {
               {/* Image Card 2 */}
               <div className="relative group h-[400px] overflow-hidden bg-zinc-900 border border-white/5">
                 <img
-                  src="./tattoo.png"
+                  src="./b&w.png"
                   alt="Work 2"
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
                 />
@@ -53,7 +53,7 @@ const Services = () => {
               {/* Image Card 3 */}
               <div className="relative group h-[400px] overflow-hidden bg-zinc-900 border border-white/5">
                 <img
-                  src="./tattoo.png"
+                  src="./public/Cover_Up.png"
                   alt="Work 3"
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0"
                 />

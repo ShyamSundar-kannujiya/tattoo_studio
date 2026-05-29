@@ -1,7 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import StatCounter from "../Function/counter.jsx";
-import { Gem, Smile, CalendarCheck, ArrowRight } from "lucide-react";
+import {
+  PenTool,
+  Sparkles,
+  Smile,
+  CalendarCheck,
+  ArrowRight,
+} from "lucide-react";
 
 const Hero = () => {
   return (
@@ -52,14 +58,17 @@ const Hero = () => {
             {
               title: "Custom Designs",
               text: "Unique tattoo concepts crafted exclusively for your personality and story.",
+              image: "./icon.png",
             },
             {
-              title: "Personalized Ink",
+              title: "Piercing Services",
               text: "Tailor-made body art designed to reflect your journey and identity.",
+              image: "./icon2.png",
             },
             {
               title: "Sterile Equipment",
               text: "Safe, hygienic, and professional tattoo sessions with sterilized tools.",
+              image: "./icon3.png",
             },
           ].map((card, index) => (
             <div
@@ -67,9 +76,9 @@ const Hero = () => {
               className="bg-black/40 border border-white/5 rounded-3xl p-8 hover:border-red-500/20 transition-all duration-300"
             >
               <img
-                src="./tattoo.png"
+                src={card.image}
                 alt={card.title}
-                className="rounded-xl w-full h-52 object-cover mb-6"
+                className="w-16 h-16 mb-4 object-contain"
               />
 
               <h3 className="text-2xl font-bold mb-4">{card.title}</h3>
@@ -79,7 +88,6 @@ const Hero = () => {
           ))}
         </div>
       </section>
-
       {/* ABOUT PREVIEW */}
       <section className="max-w-7xl mx-auto py-24 px-6 grid md:grid-cols-2 gap-14 items-center">
         <div className="relative">
@@ -164,7 +172,7 @@ const Hero = () => {
 
             <div className="space-y-8">
               <div className="flex gap-4">
-                <img src="./choose.png" className="w-6 h-6 mt-1" />
+                <PenTool className="text-red-500 w-6 h-6" />
                 <div>
                   <h3 className="text-xl font-bold">
                     Professional Tattoo Studio
@@ -176,7 +184,7 @@ const Hero = () => {
               </div>
 
               <div className="flex gap-4">
-                <Gem className="text-red-500 mt-1" />
+                <Sparkles className="text-red-500 mt-1" />
                 <div>
                   <h3 className="text-xl font-bold">Unique Tattoo Designs</h3>
                   <p className="text-gray-400 mt-2">

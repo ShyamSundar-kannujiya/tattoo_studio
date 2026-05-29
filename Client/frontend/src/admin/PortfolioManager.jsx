@@ -152,6 +152,9 @@ const PortfolioManager = () => {
                 <option value="Japanese">Japanese</option>
                 <option value="Lettering">Lettering</option>
                 <option value="Color">Color</option>
+                <option value="Piercing">Piercing</option>
+                <option value="Coverup">Coverup</option>
+                <option value="Realistic">Realistic</option>
               </select>
             </div>
 
