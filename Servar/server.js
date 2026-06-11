@@ -5,8 +5,6 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
-
-import chatRoute from "./routes/chatRoute.js";
 import authRoutes from "./routes/authRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
@@ -37,7 +35,6 @@ app.use("/appointments", appointmentRoutes);
 app.use("/settings", settingsRoutes);
 app.use("/portfolio", portfolioRoutes);
 app.use("/testimonials", testimonialRoutes);
-app.use("/chat", chatRoute);
 
 /* Default Route */
 app.get("/", (req, res) => {
@@ -60,7 +57,6 @@ connectDB()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`✅ Server running on http://localhost:${PORT}`);
-      console.log(`📝 Chat endpoint: http://localhost:${PORT}/chat`);
     });
   })
   .catch((err) => {
